@@ -1,11 +1,10 @@
 package main
 
-
 import (
 	"fmt"
 	"math"
-	"time"
 	"sync"
+	"time"
 )
 
 func IsPrime(n int) bool {
@@ -37,11 +36,11 @@ func Primes(n int) []int {
 	return primes
 }
 
-func ConcurrentPrimes (n int) []int {
+func ConcurrentPrimes(n int) []int {
 	primes := make([]int, 0)
 	pchannel := make(chan int, n)
 	wg := &sync.WaitGroup{}
-	for i:=2; i < n; i++ {
+	for i := 2; i < n; i++ {
 		wg.Add(1)
 		go IsConcurrentPrime(i, pchannel, wg)
 	}
@@ -57,7 +56,7 @@ func ConcurrentPrimes (n int) []int {
 	return primes
 }
 
-func main () {
+func main() {
 	var limit = 10000000
 	start := time.Now()
 	Primes(limit)
